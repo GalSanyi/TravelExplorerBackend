@@ -1,4 +1,6 @@
 import Booking from "../Booking.js";
+
+//create new book
 export const createBooking = async (req, res) => {
   const newBooking = new Booking(req.body);
   try {
@@ -15,14 +17,36 @@ export const createBooking = async (req, res) => {
     });
   }
 };
+//get single book
 export const getBooking = async (req, res) => {
   const id = req.params.id;
   try {
     const book = await Booking.findById(id);
-    set.status(200).json({
+    res.status(200).json({
       success: true,
       message: "Success",
       data: book,
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Not found",
+    });
+  }
+};
+//create all book
+export const getAllBooking = async (req, res) => {
+  try {
+    const books = await Booking.findById(id);
+    res.status(200).json({
+      success: true,
+      message: "Success",
+      data: books,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "server error",
+    });
+  }
 };

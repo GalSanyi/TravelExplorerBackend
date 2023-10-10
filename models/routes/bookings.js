@@ -1,7 +1,13 @@
 import express from "express";
-import { createBooking } from "../conrtollers/bookingontroller.js";
-import { verifyUser } from "../utils/verifyToken.js";
+import {
+  createBooking,
+  getAllBooking,
+  getBooking,
+} from "../conrtollers/bookingontroller.js";
+import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
 const router = express.Router();
 router.post("/", verifyUser, createBooking);
+router.get("/:id", verifyUser, getBooking);
+router.get("/", verifyAdmin, getAllBooking);
 
 export default router;
