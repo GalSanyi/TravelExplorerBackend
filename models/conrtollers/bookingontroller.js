@@ -4,11 +4,11 @@ import Booking from "../Booking.js";
 export const createBooking = async (req, res) => {
   const newBooking = new Booking(req.body);
   try {
-    const savedBokking = await newBooking.save();
+    const savedBooking = await newBooking.save();
     res.status(200).json({
       success: true,
-      message: "You're tour is booked",
-      data: savedBokking,
+      message: "Your tour is booked",
+      data: savedBooking,
     });
   } catch (error) {
     res.status(500).json({
@@ -37,7 +37,7 @@ export const getBooking = async (req, res) => {
 //create all book
 export const getAllBooking = async (req, res) => {
   try {
-    const books = await Booking.findById(id);
+    const books = await Booking.find();
     res.status(200).json({
       success: true,
       message: "Success",
